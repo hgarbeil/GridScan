@@ -12,8 +12,7 @@ class gridscan(QtGui.QMainWindow):
 
     def __init__(self):
         QtGui.QWidget.__init__(self)
-        self.ui = uic.loadUi(" "
-                             "gridscan_mainwin.ui", self)
+        self.ui = uic.loadUi("gridscan_mainwin.ui", self)
         print "We get to here "
         curval = caget ("Dera:m1.VAL")
         s="%7.4f"%(val)
