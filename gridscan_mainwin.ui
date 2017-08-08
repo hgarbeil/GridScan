@@ -29,8 +29,8 @@
     <widget class="QPushButton" name="x_MoveButton">
      <property name="geometry">
       <rect>
-       <x>170</x>
-       <y>127</y>
+       <x>180</x>
+       <y>130</y>
        <width>75</width>
        <height>23</height>
       </rect>
@@ -39,13 +39,13 @@
       <string>Move</string>
      </property>
     </widget>
-    <widget class="QWidget" name="">
+    <widget class="QWidget" name="layoutWidget">
      <property name="geometry">
       <rect>
        <x>10</x>
        <y>24</y>
-       <width>158</width>
-       <height>126</height>
+       <width>159</width>
+       <height>130</height>
       </rect>
      </property>
      <layout class="QGridLayout" name="gridLayout">
@@ -167,6 +167,19 @@
      </layout>
     </widget>
    </widget>
+   <widget class="QPushButton" name="StartScanButton">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>420</y>
+      <width>93</width>
+      <height>28</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Start Scan</string>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
@@ -174,7 +187,7 @@
      <x>0</x>
      <y>0</y>
      <width>319</width>
-     <height>21</height>
+     <height>26</height>
     </rect>
    </property>
   </widget>

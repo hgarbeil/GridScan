@@ -13,22 +13,40 @@ class gridscan(QtGui.QMainWindow):
     def __init__(self):
         QtGui.QWidget.__init__(self)
         self.ui = uic.loadUi("gridscan_mainwin.ui", self)
+        caput ("Dera:m1.VAL", 5.1)
+        caput ("Dera:m2.VAL", 2.7)
         print "We get to here "
         curval = caget ("Dera:m1.VAL")
-        s="%7.4f"%(val)
+        s="%7.4f"%(curval)
+        print "M1 position is : ", s
+
+
+        curval = caget("Dera:m2.VAL")
+        s = "%7.4f" % (curval)
+        print "M2 position is : ", s
         self.ui.x_CurLocLE.setText(s)
         self.ui.x_CenterLocLE.setText(s)
         self.ui.x_IncLE.setText(".01")
-        self.ui.x_MovLocLE.setText(s)
+        self.ui.x_MoveLocLE.setText(s)
         self.ca = MyCAEpics ()
+        #self.connect (self.ca, self.ca.update_position, self,
+        #              QtCore.pyqtSlot(self.updateMotors))
         self.ca.update_position.connect (self.updateMotors)
-
+        self.ui.x_MoveButton.clicked.connect (self.moveXMotor)
+        self.ui.StartScanButton.clicked.connect (self.startScan)
 
     def updateMotors (self, mot_num, pos) :
-        print "move motor : " + mot_num +"   to position : " + pos
+        print "in here"
+        print "move motor : %d to position %f"%(mot_num, pos)
         #if mot_num == 0 :
 
+    def moveXMotor (self) :
+        print "move motor : "
 
+    def startScan (self) :
+        #self.ca.set_params ()
+        self.ca.set_params(5.08,5.1,.01, 2.64,2.65,.01)
+        self.ca.start ()
 
 
 if __name__=='__main__':
