@@ -5,21 +5,30 @@
 ###
 from PyQt4 import QtCore, QtGui, uic
 from epics import caget, cainfo, caput
+from MyCAEpics import *
 import sys
 
 class gridscan(QtGui.QMainWindow):
 
     def __init__(self):
         QtGui.QWidget.__init__(self)
-        self.ui = uic.loadUi("C:\Users\przem\workdir\GridScan\gridscan_mainwin.ui", self)
+        self.ui = uic.loadUi(" "
+                             "gridscan_mainwin.ui", self)
         print "We get to here "
-        val = caget ("Dera:m1.VAL")
-        print val
-        s="%f"%(val)
+        curval = caget ("Dera:m1.VAL")
+        s="%7.4f"%(val)
         self.ui.x_CurLocLE.setText(s)
         self.ui.x_CenterLocLE.setText(s)
-
         self.ui.x_IncLE.setText(".01")
+        self.ui.x_MovLocLE.setText(s)
+        self.ca = MyCAEpics ()
+        self.ca.update_position.connect (self.updateMotors)
+
+
+    def updateMotors (self, mot_num, pos) :
+        print "move motor : " + mot_num +"   to position : " + pos
+        #if mot_num == 0 :
+
 
 
 
