@@ -2,7 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="aca0571a-dd8e-425f-8ec6-410f147bc26b" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gridscan_mainwin.ui" afterPath="$PROJECT_DIR$/gridscan_mainwin.ui" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/GridScan.py" afterPath="$PROJECT_DIR$/GridScan.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MyCAEpics.py" afterPath="$PROJECT_DIR$/MyCAEpics.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -25,11 +27,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="GridScan.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="GridScan.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/GridScan.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="1.5855019" vertical-offset="14" max-vertical-offset="1122">
-              <caret line="51" column="1" selection-start-line="51" selection-start-column="1" selection-end-line="51" selection-end-column="1" />
+            <state vertical-scroll-proportion="-12.64" vertical-offset="976" max-vertical-offset="1581">
+              <caret line="76" column="67" selection-start-line="76" selection-start-column="67" selection-end-line="76" selection-end-column="67" />
               <folding>
                 <element signature="e#132#168#0" expanded="true" />
               </folding>
@@ -37,14 +39,14 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MyCAEpics.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="MyCAEpics.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/MyCAEpics.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="14" max-vertical-offset="884">
-              <caret line="45" column="16" selection-start-line="45" selection-start-column="16" selection-end-line="45" selection-end-column="16" />
+            <state vertical-scroll-proportion="0.75598085" vertical-offset="789" max-vertical-offset="1207">
+              <caret line="65" column="52" selection-start-line="65" selection-start-column="52" selection-end-line="65" selection-end-column="52" />
               <folding>
                 <element signature="e#0#38#0" expanded="true" />
-                <marker date="1502237254931" expanded="true" signature="1263:1300" placeholder="..." />
+                <marker date="1502345368087" expanded="true" signature="1778:1895" placeholder="..." />
               </folding>
             </state>
           </provider>
@@ -79,10 +81,10 @@
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="123" />
-    <option name="y" value="114" />
+    <option name="x" value="334" />
+    <option name="y" value="82" />
     <option name="width" value="1400" />
-    <option name="height" value="990" />
+    <option name="height" value="870" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <OptionsSetting value="true" id="Add" />
@@ -314,11 +316,11 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="123" y="114" width="1400" height="990" extended-state="1" />
-    <editor active="false" />
+    <frame x="334" y="82" width="1400" height="870" extended-state="0" />
+    <editor active="true" />
     <layout>
-      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3291714" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24927746" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.38107753" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24927746" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3291714" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -380,7 +382,7 @@
           <caret line="45" column="16" selection-start-line="45" selection-start-column="16" selection-end-line="45" selection-end-column="16" />
           <folding>
             <element signature="e#0#38#0" expanded="true" />
-            <marker date="1502237254931" expanded="true" signature="1263:1300" placeholder="..." />
+            <marker date="1502345368087" expanded="true" signature="1778:1895" placeholder="..." />
           </folding>
         </state>
       </provider>
@@ -419,23 +421,23 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/MyCAEpics.py">
+    <entry file="file://$PROJECT_DIR$/GridScan.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="14" max-vertical-offset="884">
-          <caret line="45" column="16" selection-start-line="45" selection-start-column="16" selection-end-line="45" selection-end-column="16" />
+        <state vertical-scroll-proportion="-12.64" vertical-offset="976" max-vertical-offset="1581">
+          <caret line="76" column="67" selection-start-line="76" selection-start-column="67" selection-end-line="76" selection-end-column="67" />
           <folding>
-            <element signature="e#0#38#0" expanded="true" />
-            <marker date="1502237254931" expanded="true" signature="1263:1300" placeholder="..." />
+            <element signature="e#132#168#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/GridScan.py">
+    <entry file="file://$PROJECT_DIR$/MyCAEpics.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.5855019" vertical-offset="14" max-vertical-offset="1122">
-          <caret line="51" column="1" selection-start-line="51" selection-start-column="1" selection-end-line="51" selection-end-column="1" />
+        <state vertical-scroll-proportion="0.75598085" vertical-offset="789" max-vertical-offset="1207">
+          <caret line="65" column="52" selection-start-line="65" selection-start-column="52" selection-end-line="65" selection-end-column="52" />
           <folding>
-            <element signature="e#132#168#0" expanded="true" />
+            <element signature="e#0#38#0" expanded="true" />
+            <marker date="1502345368087" expanded="true" signature="1778:1895" placeholder="..." />
           </folding>
         </state>
       </provider>

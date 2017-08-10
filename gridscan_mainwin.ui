@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>319</width>
-    <height>506</height>
+    <width>311</width>
+    <height>538</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -19,7 +19,7 @@
      <rect>
       <x>10</x>
       <y>10</y>
-      <width>301</width>
+      <width>291</width>
       <height>161</height>
      </rect>
     </property>
@@ -171,7 +171,7 @@
     <property name="geometry">
      <rect>
       <x>20</x>
-      <y>420</y>
+      <y>460</y>
       <width>93</width>
       <height>28</height>
      </rect>
@@ -185,7 +185,7 @@
      <rect>
       <x>10</x>
       <y>180</y>
-      <width>301</width>
+      <width>291</width>
       <height>161</height>
      </rect>
     </property>
@@ -333,13 +333,75 @@
      </layout>
     </widget>
    </widget>
+   <widget class="QLabel" name="label_11">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>350</y>
+      <width>101</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Output file prefix :</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="browseButton">
+    <property name="geometry">
+     <rect>
+      <x>210</x>
+      <y>350</y>
+      <width>75</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Browse</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="outprefLE">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>379</y>
+      <width>261</width>
+      <height>21</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_12">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>420</y>
+      <width>121</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Acquisition Time (secs ) : </string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="acquisitionTimeLE">
+    <property name="geometry">
+     <rect>
+      <x>220</x>
+      <y>420</y>
+      <width>61</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>20</string>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>319</width>
+     <width>311</width>
      <height>21</height>
     </rect>
    </property>

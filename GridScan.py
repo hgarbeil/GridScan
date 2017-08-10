@@ -7,6 +7,7 @@ from PyQt4 import QtCore, QtGui, uic
 from epics import caget, cainfo, caput
 from MyCAEpics import *
 import sys
+import time
 
 class gridscan(QtGui.QMainWindow):
 
@@ -29,6 +30,7 @@ class gridscan(QtGui.QMainWindow):
         #              QtCore.pyqtSlot(self.updateMotors))
         self.ca.update_position.connect (self.update_motors)
         self.ui.x_MoveButton.clicked.connect (self.move_x_motor)
+        self.ui.y_MoveButton.clicked.connect (self.move_y_motor)
         self.ui.StartScanButton.clicked.connect (self.start_scan)
 
     def update_motors (self, mot_num, pos) :
@@ -36,11 +38,28 @@ class gridscan(QtGui.QMainWindow):
         print "move motor : %d to position %f"%(mot_num, pos)
         if (mot_num==0) :
             self.ui.x_CurLocLE.setText(s)
-
+        if (mot_num==1) :
+            self.ui.y_CurLocLE.setText (s)
         #if mot_num == 0 :
 
     def move_x_motor (self) :
+        val = self.ui.x_MoveLocLE.text().toFloat()[0]
         print "move motor : "
+        self.ca.move_motor (0, val)
+        time.sleep (1)
+        val = self.ca.get_position (0)
+        s="%5.3f"%val
+        self.ui.x_CurLocLE.setText(s)
+
+
+    def move_y_motor (self) :
+        val = self.ui.y_MoveLocLE.text().toFloat()[0]
+        print "move motor : "
+        self.ca.move_motor (0, val)
+        time.sleep (1)
+        val = self.ca.get_position (1)
+        s="%5.3f"%val
+        self.ui.y_CurLocLE.setText(s)
 
     def start_scan (self) :
         #self.ca.set_pasfams ()
@@ -48,7 +67,15 @@ class gridscan(QtGui.QMainWindow):
         xrange = self.ui.x_RangeLE.text().toFloat()[0]
         xsteps = self.ui.x_NStepsLE.text().toInt()[0]
 
-        self.ca.set_params( x0, xrange, xsteps, 2.7,.2,2)
+        y0 = self.ui.y_CenterLocLE.text().toFloat()[0]
+        yrange = self.ui.y_RangeLE.text().toFloat()[0]
+        ysteps = self.ui.y_NStepsLE.text().toInt()[0]
+
+        self.ca.set_params( x0, xrange, xsteps, y0, yrange, ysteps)
+        acquisition_time = self.ui.acquisitionTimeLE.text().toInt()[0]
+        outprefix = self.ui.outprefLE.text()
+        self.ca.set_acquisition_params (outprefix, acquisition_time)
+
         self.ca.start ()
 
 
