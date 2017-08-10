@@ -252,7 +252,7 @@
        </widget>
       </item>
       <item row="1" column="1">
-       <widget class="QLineEdit" name="y_CentLocLE">
+       <widget class="QLineEdit" name="y_CenterLocLE">
         <property name="maximumSize">
          <size>
           <width>60</width>
@@ -368,6 +368,9 @@
       <height>21</height>
      </rect>
     </property>
+    <property name="text">
+     <string>C:\X123Data\Spectrum_</string>
+    </property>
    </widget>
    <widget class="QLabel" name="label_12">
     <property name="geometry">
@@ -402,7 +405,7 @@
      <x>0</x>
      <y>0</y>
      <width>311</width>
-     <height>21</height>
+     <height>26</height>
     </rect>
    </property>
   </widget>

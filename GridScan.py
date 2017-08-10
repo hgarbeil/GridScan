@@ -17,15 +17,34 @@ class gridscan(QtGui.QMainWindow):
         caput ("Dera:m1.VAL", 5.1)
         caput ("Dera:m2.VAL", 2.7)
         print "We get to here "
+        # x motors
         curval = caget ("Dera:m1.VAL")
         s="%7.4f"%(curval)
         print "M1 position is : ", s
+
         self.ui.x_CurLocLE.setText(s)
         self.ui.x_RangeLE.setText (".2")
         self.ui.x_CenterLocLE.setText(s)
         self.ui.x_NStepsLE.setText("10")
         self.ui.x_MoveLocLE.setText(s)
-        self.ca = MyCAEpics ()
+
+
+
+        # y motors
+        curval = caget("Dera:m2.VAL")
+        s = "%7.4f" % (curval)
+        print "M2 position is : ", s
+
+        self.ui.y_CurLocLE.setText(s)
+        self.ui.y_RangeLE.setText(".2")
+        self.ui.y_CenterLocLE.setText(s)
+        self.ui.y_NStepsLE.setText("10")
+        self.ui.y_MoveLocLE.setText(s)
+
+        # get MyCAEpics instance
+        self.ca = MyCAEpics()
+
+        # link signals to slots
         #self.connect (self.ca, self.ca.update_position, self,
         #              QtCore.pyqtSlot(self.updateMotors))
         self.ca.update_position.connect (self.update_motors)
@@ -33,7 +52,11 @@ class gridscan(QtGui.QMainWindow):
         self.ui.y_MoveButton.clicked.connect (self.move_y_motor)
         self.ui.StartScanButton.clicked.connect (self.start_scan)
 
+
+
+
     def update_motors (self, mot_num, pos) :
+
         s="%6.3f"%pos
         print "move motor : %d to position %f"%(mot_num, pos)
         if (mot_num==0) :
@@ -55,7 +78,7 @@ class gridscan(QtGui.QMainWindow):
     def move_y_motor (self) :
         val = self.ui.y_MoveLocLE.text().toFloat()[0]
         print "move motor : "
-        self.ca.move_motor (0, val)
+        self.ca.move_motor (1, val)
         time.sleep (1)
         val = self.ca.get_position (1)
         s="%5.3f"%val

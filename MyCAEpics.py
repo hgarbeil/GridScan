@@ -1,6 +1,8 @@
 from epics import caput, caget, cainfo
 from PyQt4 import QtCore
 import numpy as np
+import os
+import subprocess
 
 class MyCAEpics (QtCore.QThread):
 
@@ -24,19 +26,19 @@ class MyCAEpics (QtCore.QThread):
         self.y_inc = yrange * 2 / ysteps
         self.y_nsteps = ysteps
 
-    def get_position (self, mot_num)
+    def get_position (self, mot_num) :
         if (mot_num == 0) :
-            return caget('Dera:m1.Val')
-        if (mot_num == 1)
-            return caget('Dera:m2.Val')
+            return caget('Dera:m1.VAL')
+        if (mot_num == 1) :
+            return caget('Dera:m2.VAL')
 
     def move_motor (self, mot_num, loc) :
         if (mot_num == 0) :
-            caput('Dera:m1.Val',put)
-        if (mot_num == 1)
-            caput ('Dera:m2.Val')
+            caput('Dera:m1.VAL',loc)
+        if (mot_num == 1) :
+            caput ('Dera:m2.VAL', loc)
 
-    def set_acquisition_params (ofil, atime)
+    def set_acquisition_params (self, ofil, atime) :
         self.outpref = ofil
         self.acqtime = atime
 
@@ -62,5 +64,11 @@ class MyCAEpics (QtCore.QThread):
                 self.move_motor (0, xval)
                 ix = int (xval * 1000)
                 # now do the scan
-                filstring = "%s_%05d_%05d.mca"
-                print "Scanning... file will be : ", filstring
+                filstring = "%s_%05d_%05d.mca"%(self.outpref, ix, iy)
+                cmdstring = "C:/Users/przem/workdir/X123/build-X123_cmd-Desktop_Qt_5_9_0_MinGW_32bit-Release/release/X123.exe"
+                fullstring = "%s %s %d"%(cmdstring, filstring, self.acqtime)
+                #os.system(fullstring)
+                news = [cmdstring, filstring, "%d"%(self.acqtime)]
+                p = subprocess.Popen (news)
+                p.wait()
+                print "Scanning... file will be : ", fullstring
