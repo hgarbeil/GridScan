@@ -1,5 +1,6 @@
 from epics import caput, caget, cainfo
 from PyQt4 import QtCore
+from time import localtime
 import numpy as np
 import os
 import subprocess
@@ -7,6 +8,7 @@ import subprocess
 class MyCAEpics (QtCore.QThread):
 
     update_position = QtCore.pyqtSignal (int, float)
+    set_status = QtCore.pyqtSignal(str, int)
     def __init__(self):
         QtCore.QThread.__init__(self)
         self.x_start = 0.
@@ -48,7 +50,9 @@ class MyCAEpics (QtCore.QThread):
 
         yval = caget ('Dera:m2.VAL')
         print yval
-
+        ltime = localtime()
+        timestring = "%4d%02d%02d%02d%02d"%(ltime.tm_year,ltime.tm_mon, ltime.tm_mday,
+                ltime.tm_hour, ltime.tm_min)
         for i in range (self.y_nsteps) :
             yval = self.y_start + i * self.y_inc
             #caput ('Dera:m2.VAL', yval)
@@ -64,11 +68,14 @@ class MyCAEpics (QtCore.QThread):
                 self.move_motor (0, xval)
                 ix = int (xval * 1000)
                 # now do the scan
-                filstring = "%s_%05d_%05d.mca"%(self.outpref, ix, iy)
+                filstring = "%s_%s_%05d_%05d.mca"%(self.outpref, timestring, ix, iy)
                 cmdstring = "C:/Users/przem/workdir/X123/build-X123_cmd-Desktop_Qt_5_9_0_MinGW_32bit-Release/release/X123.exe"
                 fullstring = "%s %s %d"%(cmdstring, filstring, self.acqtime)
                 #os.system(fullstring)
                 news = [cmdstring, filstring, "%d"%(self.acqtime)]
+                acqstring = "Acquiring %05d %05d"%(ix,iy)
+                self.set_status.emit (acqstring, 1)
                 p = subprocess.Popen (news)
                 p.wait()
                 print "Scanning... file will be : ", fullstring
+        self.set_status.emit("Ready", 0)
