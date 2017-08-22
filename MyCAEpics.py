@@ -30,13 +30,13 @@ class MyCAEpics (QtCore.QThread):
 
     def get_position (self, mot_num) :
         if (mot_num == 0) :
-            return caget('Dera:m1.VAL')
+            return caget('Dera:m3.VAL')
         if (mot_num == 1) :
             return caget('Dera:m2.VAL')
 
     def move_motor (self, mot_num, loc) :
         if (mot_num == 0) :
-            caput('Dera:m1.VAL',loc)
+            caput('Dera:m3.VAL',loc)
         if (mot_num == 1) :
             caput ('Dera:m2.VAL', loc)
 
@@ -45,7 +45,7 @@ class MyCAEpics (QtCore.QThread):
         self.acqtime = atime
 
     def run (self) :
-        xval = caget ('Dera:m1.VAL')
+        xval = caget ('Dera:m3.VAL')
         print xval
 
         yval = caget ('Dera:m2.VAL')
@@ -62,7 +62,7 @@ class MyCAEpics (QtCore.QThread):
             iy = int (yval * 1000)
             for j in range (self.x_nsteps) :
                 xval = self.x_start + j * self.x_inc
-                #caput ('Dera:m1.VAL', xval)
+                #caput ('Dera:m3.VAL', xval)
                 self.update_position.emit (0, xval)
                 QtCore.QThread.sleep (2)
                 self.move_motor (0, xval)

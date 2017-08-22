@@ -24,7 +24,7 @@
      </rect>
     </property>
     <property name="title">
-     <string>X Motor</string>
+     <string>X Motor (m3.VAL)</string>
     </property>
     <widget class="QPushButton" name="x_MoveButton">
      <property name="geometry">
@@ -190,7 +190,7 @@
      </rect>
     </property>
     <property name="title">
-     <string>Y Motor</string>
+     <string>Y Motor (m2.VAL)</string>
     </property>
     <widget class="QPushButton" name="y_MoveButton">
      <property name="geometry">
@@ -377,8 +377,8 @@
      <rect>
       <x>20</x>
       <y>420</y>
-      <width>121</width>
-      <height>16</height>
+      <width>161</width>
+      <height>21</height>
      </rect>
     </property>
     <property name="text">

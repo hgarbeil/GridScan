@@ -14,7 +14,7 @@ class gridscan(QtGui.QMainWindow):
     def __init__(self):
         QtGui.QWidget.__init__(self)
         self.ui = uic.loadUi("gridscan_mainwin.ui", self)
-        status = caput ("Dera:m1.VAL", 5.1)
+        status = caput ("Dera:m3.VAL", 5.1)
         # if status is not equal to 1 messagebox that info and exit
         if status != 1 :
             mbox = QtGui.QMessageBox ()
@@ -28,9 +28,9 @@ class gridscan(QtGui.QMainWindow):
 
         print "We get to here "
         # x motors
-        curval = caget ("Dera:m1.VAL")
+        curval = caget ("Dera:m3.VAL")
         s="%7.4f"%(curval)
-        print "M1 position is : ", s
+        print "M3 position is : ", s
 
         self.ui.x_CurLocLE.setText(s)
         self.ui.x_RangeLE.setText (".2")
@@ -113,6 +113,8 @@ class gridscan(QtGui.QMainWindow):
 
         self.ca.set_params( x0, xrange, xsteps, y0, yrange, ysteps)
         acquisition_time = self.ui.acquisitionTimeLE.text().toInt()[0]
+        acqStr = "%4d"%(acquisition_time)
+        self.ui.acquisitionTimeLE.setText (acqStr)
         outprefix = self.ui.outprefLE.text()
         self.ca.set_acquisition_params (outprefix, acquisition_time)
 
