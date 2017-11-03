@@ -1,5 +1,5 @@
 from epics import caput, caget, cainfo
-from PyQt4 import QtCore
+from PyQt5 import QtCore
 from time import localtime
 import numpy as np
 import os
@@ -47,12 +47,13 @@ class MyCAEpics (QtCore.QThread):
     def run (self) :
         xval = caget ('Dera:m3.VAL')
         print xval
-
+        count = 0
         yval = caget ('Dera:m2.VAL')
         print yval
         ltime = localtime()
         timestring = "%4d%02d%02d%02d%02d"%(ltime.tm_year,ltime.tm_mon, ltime.tm_mday,
                 ltime.tm_hour, ltime.tm_min)
+        posfile = open ("%s_position.txt"%(self.outpref), 'w')
         for i in range (self.y_nsteps) :
             yval = self.y_start + i * self.y_inc
             #caput ('Dera:m2.VAL', yval)
@@ -62,13 +63,17 @@ class MyCAEpics (QtCore.QThread):
             iy = int (yval * 1000)
             for j in range (self.x_nsteps) :
                 xval = self.x_start + j * self.x_inc
+                outstr = '%d\t%f\t%f\r\n'%(count,xval,yval)
+                posfile.write (outstr)
                 #caput ('Dera:m3.VAL', xval)
                 self.update_position.emit (0, xval)
                 QtCore.QThread.sleep (2)
                 self.move_motor (0, xval)
                 ix = int (xval * 1000)
                 # now do the scan
-                filstring = "%s_%s_%05d_%05d.mca"%(self.outpref, timestring, ix, iy)
+                #filstring = "%s_%s_%05d_%05d.mca"%(self.outpref, timestring, ix, iy)
+                filstring = "%s_%04d.mca"%(count)
+                count = count + 1
                 cmdstring = "C:/Users/przem/workdir/X123/build-X123_cmd-Desktop_Qt_5_9_0_MinGW_32bit-Release/release/X123.exe"
                 fullstring = "%s %s %d"%(cmdstring, filstring, self.acqtime)
                 #os.system(fullstring)
@@ -79,3 +84,4 @@ class MyCAEpics (QtCore.QThread):
                 p.wait()
                 print "Scanning... file will be : ", fullstring
         self.set_status.emit("Ready", 0)
+        posfile.close()
