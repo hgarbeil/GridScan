@@ -12,7 +12,7 @@ import time
 class gridscan(QtWidgets.QMainWindow):
 
     def __init__(self):
-        QWidgets.QMainWindow.__init__(self)
+        QtWidgets.QMainWindow.__init__(self)
         self.ui = uic.loadUi("gridscan_mainwin.ui", self)
         status = caput ("Dera:m3.VAL", 5.1)
         # if status is not equal to 1 messagebox that info and exit
@@ -103,16 +103,17 @@ class gridscan(QtWidgets.QMainWindow):
 
     def start_scan (self) :
         #self.ca.set_pasfams ()
-        x0 = self.ui.x_CenterLocLE.text().toFloat()[0]
-        xrange = self.ui.x_RangeLE.text().toFloat()[0]
-        xsteps = self.ui.x_NStepsLE.text().toInt()[0]
 
-        y0 = self.ui.y_CenterLocLE.text().toFloat()[0]
-        yrange = self.ui.y_RangeLE.text().toFloat()[0]
-        ysteps = self.ui.y_NStepsLE.text().toInt()[0]
+        x0 = float(self.ui.x_CenterLocLE.text())
+        xrange = float(self.ui.x_RangeLE.text())
+        xsteps = int(self.ui.x_NStepsLE.text())
+
+        y0 = float(self.ui.y_CenterLocLE.text())
+        yrange = float(self.ui.y_RangeLE.text())
+        ysteps = int(self.ui.y_NStepsLE.text())
 
         self.ca.set_params( x0, xrange, xsteps, y0, yrange, ysteps)
-        acquisition_time = self.ui.acquisitionTimeLE.text().toInt()[0]
+        acquisition_time = int(self.ui.acquisitionTimeLE.text())
         acqStr = "%4d"%(acquisition_time)
         self.ui.acquisitionTimeLE.setText (acqStr)
         outprefix = self.ui.outprefLE.text()
