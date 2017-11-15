@@ -1,6 +1,7 @@
 from epics import caput, caget, cainfo
-from PyQt5 import QtCore
+from PyQt5 import QtCore, QtWidgets, QtGui
 from time import localtime
+from pathlib2 import Path
 import numpy as np
 import os
 import subprocess
@@ -18,6 +19,8 @@ class MyCAEpics (QtCore.QThread):
         self.x_inc = 0.01
         self.y_inc = 0.01
 
+    def setParent (self, p) :
+        self.myparent = p
 
     def set_params (self, x0, xrange, xsteps, y0, yrange, ysteps) :
         self.x_start = x0 - xrange
@@ -53,6 +56,11 @@ class MyCAEpics (QtCore.QThread):
         ltime = localtime()
         timestring = "%4d%02d%02d%02d%02d"%(ltime.tm_year,ltime.tm_mon, ltime.tm_mday,
                 ltime.tm_hour, ltime.tm_min)
+        posstring = "%s_position.txt"%self.outpref
+
+
+
+
         posfile = open ("%s_position.txt"%(self.outpref), 'w')
         for i in range (self.y_nsteps) :
             yval = self.y_start + i * self.y_inc

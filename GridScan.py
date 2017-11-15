@@ -5,6 +5,7 @@
 ###
 from PyQt5 import QtCore, QtWidgets, QtGui, uic
 from epics import caget, cainfo, caput
+from pathlib2 import Path
 from MyCAEpics import *
 import sys
 import time
@@ -17,9 +18,9 @@ class gridscan(QtWidgets.QMainWindow):
         status = caput ("Dera:m3.VAL", 5.1)
         # if status is not equal to 1 messagebox that info and exit
         if status != 1 :
-            mbox = QtGui.QMessageBox ()
+            mbox = QtWidgets.QMessageBox ()
             mbox.setWindowTitle ("GridScan Problem : EPICS")
-            mbox.setIcon (QtGui.QMessageBox.Critical)
+            mbox.setIcon (QtWidgets.QMessageBox.Critical)
             mbox.setText ("Problem with EPICS communication")
             mbox.setInformativeText("Start EPICS IOC")
             mbox.exec_()
@@ -55,6 +56,7 @@ class gridscan(QtWidgets.QMainWindow):
 
         # get MyCAEpics instance
         self.ca = MyCAEpics()
+        self.ca.setParent (self)
 
         # link signals to slots
         #self.connect (self.ca, self.ca.update_position, self,
@@ -117,6 +119,26 @@ class gridscan(QtWidgets.QMainWindow):
         acqStr = "%4d"%(acquisition_time)
         self.ui.acquisitionTimeLE.setText (acqStr)
         outprefix = self.ui.outprefLE.text()
+        posstring = "%s_position.txt" %outprefix
+
+        pfile = Path(posstring)
+        if pfile.is_file():
+            print "position file exists: overwrite?"
+
+            mbox = QtWidgets.QMessageBox()
+            mbox.setWindowTitle('Output File Prefix')
+            mbox.setText('Output file exists')
+            mbox.setInformativeText('Hit OK to overwrite, otherwise cancel')
+            mbox.setStandardButtons(QtWidgets.QMessageBox.Ok | QtWidgets.QMessageBox.Cancel)
+            mbox.setDefaultButton(QtWidgets.QMessageBox.Ok)
+            # mbox = QtWidgets.QMessageBox.question(self, "Ok to Overwrite Output File", 'Yes to Overwrite',
+            #    QtWidgets.QMessageBox.Yes|QtWidgets.QMessageBox.NoButton)
+            ret = mbox.exec_()
+            #ret = QtWidgets.QMessageBox.Cancel
+            if ret == QtWidgets.QMessageBox.Cancel:
+                return
+
+
         self.ca.set_acquisition_params (outprefix, acquisition_time)
 
         self.ca.start ()
